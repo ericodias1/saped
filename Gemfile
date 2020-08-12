@@ -16,6 +16,9 @@ gem 'simple_form'
 gem 'aasm'
 gem 'will_paginate-bootstrap4'
 gem 'ransack'
+gem 'devise'
+gem 'devise-i18n'
+gem 'devise-bootstrap-views'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

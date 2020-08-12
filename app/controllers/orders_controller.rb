@@ -1,8 +1,11 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_order, except: [:index, :new, :create]
 
   def index
-    @orders = Order.order(created_at: :desc).paginate(page: params[:page], per_page: 30)
+    @q = Order.ransack(params[:q])
+    @q.sorts = 'created_at desc' if @q.sorts.empty?
+    @orders = @q.result.paginate(page: params[:page], per_page: 30)
   end
 
   def new
