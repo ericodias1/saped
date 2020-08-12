@@ -30,6 +30,7 @@
           - unless order.finished?
             = link_to 'Excluir', order_path(order), class: 'btn btn-sm btn-danger',
                                                     data: {confirm: 'Tem certeza que deseja excluir?', method: :delete}
+  .float-right= will_paginate @orders, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 
 - else
   Nenhum pedido encontrado.

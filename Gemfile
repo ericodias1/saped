@@ -14,6 +14,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'haml-rails'
 gem 'simple_form'
 gem 'aasm'
+gem 'will_paginate-bootstrap4'
+gem 'ransack'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
