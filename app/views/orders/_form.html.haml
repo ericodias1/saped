@@ -1,0 +1,9 @@
+.mt-4
+  = simple_form_for @order do |f|
+    = f.input :name, label: 'Descrição do pedido'
+    = f.input :order_number, label: 'Número do pedido'
+    = f.input :state, label: 'Estado', input_html: {value: @order.state, disabled: :disabled}
+    .row
+      .col-sm-12
+        = f.button :submit, value: 'Salvar pedido', class: 'btn btn-primary float-right'
+        = link_to 'Voltar', orders_path, class: 'btn btn-light float-right mr-4'

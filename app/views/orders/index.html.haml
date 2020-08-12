@@ -1,1 +1,24 @@
-Orders#index
+%h3
+  Gestão de pedidos
+  = link_to new_order_path, class: 'btn btn-primary float-right' do
+    + Novo pedido
+- if @orders.any?
+  %table.table.table-striped.table-bordered.mt-4
+    %tr
+      %th Número do pedido
+      %th Descrição
+      %th Data de criação
+      %th Última atualização
+      %th
+    - @orders.each do |order|
+      %tr
+        %td= order.order_number
+        %td= order.name
+        %td= l order.created_at, format: :short
+        %td= l order.updated_at, format: :short
+        %td
+          = link_to 'Editar', edit_order_path(order), class: 'btn btn-sm btn-warning'
+          = link_to 'Excluir', order_path(order), class: 'btn btn-sm btn-danger', data: {confirm: 'Tem certeza que deseja excluir?', method: :delete}
+
+- else
+  Nenhum pedido encontrado.
