@@ -22,4 +22,6 @@ Algumas tecnologias, padrões e gems utilizadas:
 
 * State machine para gerenciamento de máquina de estado.
 
+* RSpec para testes automatizados.
+
 * Entre outros.
