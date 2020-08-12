@@ -1,12 +1,12 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:edit, :update, :destroy]
+  before_action :set_order, except: [:index, :new, :create]
 
   def index
-    @orders = Order.all
+    @orders = Order.order(created_at: :desc)
   end
 
   def new
-    @order = Order.new state: 'pending'
+    @order = Order.new
   end
 
   def create
@@ -44,12 +44,24 @@ class OrdersController < ApplicationController
     redirect_to orders_path
   end
 
+  def to_in_progress
+    @order.do!
+    flash[:success] = 'Status do pedido alterado para Em progresso.'
+    redirect_to orders_path
+  end
+
+  def to_finished
+    @order.finish!
+    flash[:success] = 'Status do pedido alterado para Concluído.'
+    redirect_to orders_path
+  end
+
   private
     def order_params
       params.require(:order).permit(:name, :order_number)
     end
 
     def set_order
-      @order = Order.find(params[:id])
+      @order = Order.find(params[:id] || params[:order_id])
     end
 end

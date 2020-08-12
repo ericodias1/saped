@@ -6,6 +6,7 @@
   %table.table.table-striped.table-bordered.mt-4
     %tr
       %th Número do pedido
+      %th Status
       %th Descrição
       %th Data de criação
       %th Última atualização
@@ -13,12 +14,22 @@
     - @orders.each do |order|
       %tr
         %td= order.order_number
+        %td
+          %span.badge{class: order.state_badge}= t("orders.states.#{order.state}")
         %td= order.name
         %td= l order.created_at, format: :short
         %td= l order.updated_at, format: :short
         %td
+          - if order.pending?
+            = link_to 'Fazer pedido', order_to_in_progress_path(order), class: 'btn btn-sm btn-success',
+                                                                        data: {confirm: 'Tem certeza que deseja alterar o status desse pedido para a fazer?'}
+          - elsif order.in_progress?
+            = link_to 'Concluir pedido', order_to_finished_path(order), class: 'btn btn-sm btn-success',
+                                                                        data: {confirm: 'Tem certeza que deseja alterar o status desse pedido para concluído?'}
           = link_to 'Editar', edit_order_path(order), class: 'btn btn-sm btn-warning'
-          = link_to 'Excluir', order_path(order), class: 'btn btn-sm btn-danger', data: {confirm: 'Tem certeza que deseja excluir?', method: :delete}
+          - unless order.finished?
+            = link_to 'Excluir', order_path(order), class: 'btn btn-sm btn-danger',
+                                                    data: {confirm: 'Tem certeza que deseja excluir?', method: :delete}
 
 - else
   Nenhum pedido encontrado.

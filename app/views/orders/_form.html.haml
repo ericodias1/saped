@@ -1,8 +1,16 @@
+- if @order.persisted?
+  - if @order.pending?
+    = link_to 'Fazer pedido', order_to_in_progress_path(@order), class: 'btn btn-sm btn-success float-right',
+                                                                 data: {confirm: 'Tem certeza que deseja alterar o status desse pedido para a fazer?'}
+  - elsif @order.in_progress?
+    = link_to 'Concluir pedido', order_to_finished_path(@order), class: 'btn btn-sm btn-success float-right',
+                                                               data: {confirm: 'Tem certeza que deseja alterar o status desse pedido para a concluído?'}
+
 .mt-4
   = simple_form_for @order do |f|
     = f.input :name, label: 'Descrição do pedido'
     = f.input :order_number, label: 'Número do pedido'
-    = f.input :state, label: 'Estado', input_html: {value: @order.state, disabled: :disabled}
+    = f.input :state, label: 'Estado', input_html: {value: t("orders.states.#{@order.state}"), disabled: :disabled}
     .row
       .col-sm-12
         = f.button :submit, value: 'Salvar pedido', class: 'btn btn-primary float-right'

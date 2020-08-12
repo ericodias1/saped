@@ -1,4 +1,9 @@
 :"pt-BR":
+  orders:
+    states:
+      pending: Pendente
+      in_progress: Em progresso
+      finished: Concluído
   activerecord:
     models:
       order: Pedido
