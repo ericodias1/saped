@@ -1,24 +1,25 @@
-# README
+# SAPED - Sistema de Administração de Pedidos
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Software criado como teste para vaga de desenvolvimento.
 
-Things you may want to cover:
+Algumas tecnologias, padrões e gems utilizadas:
 
-* Ruby version
+* Ruby 2.7.1
 
-* System dependencies
+* Rails 6
 
-* Configuration
+* Devise para autenticação
 
-* Database creation
+* SQLite para banco de dados
 
-* Database initialization
+* Boostrap para views
 
-* How to run the test suite
+* Webpacker para gerenciamento de assets
 
-* Services (job queues, cache servers, search engines, etc.)
+* Ransack para filtros em tela.
 
-* Deployment instructions
+* Will Paginate para paginação.
 
-* ...
+* State machine para gerenciamento de máquina de estado.
+
+* Entre outros.
