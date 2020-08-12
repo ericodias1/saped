@@ -14,7 +14,6 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new order_params
-    @order.state = 'pending'
 
     if @order.save
       flash[:success] = 'Pedido criado com sucesso.'
@@ -39,7 +38,7 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    if @order.state == 'pending' && @order.destroy
+    if @order.destroy
       flash[:success] = 'Pedido excluído com sucesso.'
     else
       flash[:danger] = 'Erro ao excluir o pedido. Não é possível excluir pedidos concluídos ou em andamento.'

@@ -20,13 +20,17 @@ class Order < ApplicationRecord
   end
 
   def state_badge
-    case state
-    when 'pending'
+    if pending?
       'badge-info'
-    when 'in_progress'
+    elsif in_progress?
       'badge-warning'
-    when 'finished'
+    elsif finished?
       'badge-success'
     end
+  end
+
+  def destroy
+    errors.add(:base, 'não foi possível excluir o pedido') && return if !pending?
+    super
   end
 end

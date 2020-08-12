@@ -1,0 +1,4 @@
+order:
+  name: Pedido 1
+  order_number: order_1
+  state: pending
